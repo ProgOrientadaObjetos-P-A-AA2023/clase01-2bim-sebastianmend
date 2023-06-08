@@ -12,11 +12,14 @@ package paquete1;
 public class Empresa {
     
     private String nombre;
-    private Edificio [] edificios;
+    private Edificio [] edificios; // nombre, costo, costo_predio
+                                   // el costo predio es igual a costo * 0.002
     private Vehiculo [] vehiculos; // tipo, matricula, valor
+    
     private double costoBienesInmuebles;
     private double costoVehiculos;
     private double costoTotalBienes;
+    private double costoTotalPagoPredio;
     
     public void establecerNombre(String m){
         nombre = m;
@@ -34,7 +37,34 @@ public class Empresa {
         }
         
         costoBienesInmuebles = suma;
+        
     }
+    
+    
+    
+    
+   
+     public void establecerVehiculos(Vehiculo[] v){
+        vehiculos = v;
+    }
+     
+     public Vehiculo[] obtenerVehiculos(){
+        return vehiculos;
+    }
+    
+    public void establecerCostoVehiculos(){
+        double suma = 0;
+        for (int i = 0; i < vehiculos.length; i++) {
+       
+            suma = suma + vehiculos[i].obtenerValor();
+        }
+        
+        costoVehiculos = suma;
+    }
+    
+   
+    
+    
     
     public String obtenerNombre(){
         return nombre;
@@ -46,6 +76,38 @@ public class Empresa {
     
     public double obtenerCostosBienesInmuebles(){
         return costoBienesInmuebles;
+    }
+    public void establecerCostoTotalBienes(){
+       costoTotalBienes = costoBienesInmuebles + costoVehiculos;
+   }
+   
+   public double obtenerCostosTotalBienes(){
+       costoTotalBienes = costoBienesInmuebles + costoVehiculos;
+        return costoTotalBienes;
+    }
+   
+   
+    public void establecerCostosTotalPagoPredio(){
+        double suma = 0;
+        for (int i = 0; i < edificios.length; i++) {
+        // for (int i = 0; i < obtenerEdificios().length; i++) {
+            suma = suma + edificios[i].obtenerCostoPredio();
+        }
+        
+        costoTotalPagoPredio = suma;
+        
+    }
+    
+    public Double obtenerCostoTotalPredio(){
+        double suma = 0;
+        for (int i = 0; i < edificios.length; i++) {
+        // for (int i = 0; i < obtenerEdificios().length; i++) {
+            suma = suma + edificios[i].obtenerCostoPredio();
+        }
+        
+        costoTotalPagoPredio = suma;
+        
+        return costoTotalPagoPredio;
     }
     
     @Override
@@ -73,17 +135,48 @@ public class Empresa {
         String reporte = String.format("%s\nLista de Edificio\n", 
                 obtenerNombre());
         for (int i = 0; i < edificios.length; i++) {
-            reporte = String.format("%s%d. %s (%.2f)\n", 
+            reporte = String.format("%s%d. %s (%.2f)[%.2f]\n ", 
                     reporte, 
                     i+1,
                     edificios[i].obtenerNombre().toUpperCase(), 
-                    edificios[i].obtenerCosto());
+                    edificios[i].obtenerCosto(),
+                    edificios[i].obtenerCostoPredio());
+            
+            
+            
         }
-        
-        reporte = String.format("%sTotal de inmuebles: %.2f\n", 
+        reporte = String.format("%sTotal de inmuebles : %.2f\n", 
                 reporte,
                 costoBienesInmuebles);
         
+        reporte = String.format("%sTotal de costo Predio : %.2f\n", 
+                reporte,
+                costoTotalPagoPredio);
+        
+         reporte = String.format("%s\nLista de Vehiculos\n",reporte );
+        for (int i = 0; i < edificios.length; i++) {
+            reporte = String.format("%s%d. %s %s (%.2f)\n", 
+                    reporte, 
+                    i+1,
+                    vehiculos[i].obtenerTipo().toUpperCase(), 
+                    vehiculos[i].obtenerMatricula(),
+                    vehiculos[i].obtenerValor());
+        }
+        reporte = String.format("%sTotal de inmuebles : %.2f\n", 
+                reporte,
+                costoVehiculos);
+        
+        
+         
+        
+        reporte = String.format("%sTotal de Bieness : %.2f\n", 
+                reporte,
+                obtenerCostosTotalBienes());
+        
+        
+        
+        
+                
         return reporte;
     }
 }
