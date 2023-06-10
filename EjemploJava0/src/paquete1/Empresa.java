@@ -89,8 +89,8 @@ public class Empresa {
    
     public void establecerCostosTotalPagoPredio(){
         double suma = 0;
-        for (int i = 0; i < edificios.length; i++) {
-        // for (int i = 0; i < obtenerEdificios().length; i++) {
+         //for (int i = 0; i < edificios.length; i++) {
+        for (int i = 0; i < obtenerEdificios().length; i++) {
             suma = suma + edificios[i].obtenerCostoPredio();
         }
         
@@ -100,8 +100,8 @@ public class Empresa {
     
     public Double obtenerCostoTotalPredio(){
         double suma = 0;
-        for (int i = 0; i < edificios.length; i++) {
-        // for (int i = 0; i < obtenerEdificios().length; i++) {
+        // for (int i = 0; i < edificios.length; i++) {
+        for (int i = 0; i < obtenerEdificios().length; i++) {
             suma = suma + edificios[i].obtenerCostoPredio();
         }
         
@@ -141,17 +141,15 @@ public class Empresa {
                     edificios[i].obtenerNombre().toUpperCase(), 
                     edificios[i].obtenerCosto(),
                     edificios[i].obtenerCostoPredio());
-            
-            
-            
         }
+        
         reporte = String.format("%sTotal de inmuebles : %.2f\n", 
                 reporte,
                 costoBienesInmuebles);
         
         reporte = String.format("%sTotal de costo Predio : %.2f\n", 
                 reporte,
-                costoTotalPagoPredio);
+                obtenerCostoTotalPredio());
         
          reporte = String.format("%s\nLista de Vehiculos\n",reporte );
         for (int i = 0; i < edificios.length; i++) {

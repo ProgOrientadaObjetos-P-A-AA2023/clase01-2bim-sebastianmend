@@ -45,12 +45,7 @@ public class Ejecutor {
         
         Vehiculo v5 = new Vehiculo ("Camioneta","LDC0011");
         v5.establecerValor(25000.00);
-        
-        
-        
-        
-        
-        
+
         Edificio [] listaEdificios = {edf1, edf2, edf3, edf4};
         //double c = listaEdificios[2].obtenerCosto();
         //System.out.println(c);
